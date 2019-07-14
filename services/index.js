@@ -2,22 +2,24 @@
 
 const jwt = require('jwt-simple')
 const moment = require('moment')
-const config = require('../config')
+const config = require('../config/config')
 
 function createToken (user) {
+  
   const payload = {
-    sub: user._id,
+    sub: user.id,
     iat: moment().unix(),
     exp: moment().add(14, 'days').unix()
   }
-
-  return jwt.encode(payload, config.SECRET_TOKEN)
+ 
+  return jwt.encode(payload, config.jwt.secret_token)
+   
 }
 
 function decodeToken (token) {
   const decoded = new Promise((resolve, reject) => {
     try {
-      const payload = jwt.decode(token, config.SECRET_TOKEN)
+      const payload = jwt.decode(token, config.jwt.secret_token)
 
       if (payload.exp <= moment().unix()) {
         reject({
@@ -26,7 +28,9 @@ function decodeToken (token) {
         })
       }
       resolve(payload.sub)
+      
     } catch (err) {
+      console.log(err)
       reject({
         status: 500,
         message: 'Invalid Token'

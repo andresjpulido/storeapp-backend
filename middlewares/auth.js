@@ -14,8 +14,9 @@ function isAuth (req, res, next) {
       req.user = response
       next()
     })
-    .catch(response => {
-      res.status(response.status)
+    .catch(response => { 
+      return res.status(response.status).send({ code: response.code, message: 'No tienes autorización' })
+       
     })
 }
 
