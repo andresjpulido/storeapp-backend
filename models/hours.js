@@ -1,0 +1,28 @@
+'use strict'; 
+
+export default (sequelize, DataTypes) => {
+ 
+  const Hour = sequelize.define('hour', {
+    id: { type: DataTypes.INTEGER, primaryKey: true},
+    id_emp: DataTypes.INTEGER,
+    activity: DataTypes.STRING,
+    start_date: DataTypes.DATE, 
+    end_date: DataTypes.DATE, 
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE    
+  }, {
+    //sequelize,
+    //modelName: 'Employee'
+    // options
+    tableName: 'hour'
+  });
+
+  Hour.associate = function(models) {
+    // associations can be defined here
+  };
+
+  console.log("invocacion del modelo hour")
+
+  return Hour;
+};
+ 
