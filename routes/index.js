@@ -16,7 +16,11 @@ api.get('/echo/:echo', utilCtrl.echo)
 api.get('/', utilCtrl.test)
 api.get('/orders', inventaryCtrl.getOrders)
 
-api.get('/employees', EmployeesCtrl.getEmployees)
+api.get('/employees', auth, EmployeesCtrl.findAll)
+api.post('/employee', auth, EmployeesCtrl.create)
+api.delete('/employees/:idEmp', auth, EmployeesCtrl.remove)
+api.put('/employees/:idEmp', auth, EmployeesCtrl.modify)
+
 api.get('/payslips', PayslipsCtrl.getPayslips)
 api.get('/payslip/:userid', PayslipsCtrl.getPayslipsByUserId)
 api.get('/hours', HoursCtrl.getHours)
@@ -27,15 +31,8 @@ api.post('/user', UserCtrl.create)
 api.post('/signup', UserCtrl.signUp)
 api.post('/signin', UserCtrl.signIn)
 
-api.post('/private', auth, UserCtrl.ok) 
+api.post('/private', auth, UserCtrl.private) 
 
 //api.get('/hours', HoursCtrl.getHours)
-
-/* 
-api.post('/signup', userCtrl.signUp)
-api.post('/signin', userCtrl.signIn)
-api.get('/private', auth, (req, res) => {
-  res.status(200).send({ message: 'Tienes acceso' })
-})
- */
+ 
 module.exports = api

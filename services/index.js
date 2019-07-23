@@ -4,19 +4,19 @@ const jwt = require('jwt-simple')
 const moment = require('moment')
 const config = require('../config/config')
 
-function createToken (user) {
-  
+function createToken(user) {
+
   const payload = {
     sub: user.id,
     iat: moment().unix(),
     exp: moment().add(14, 'days').unix()
   }
- 
+
   return jwt.encode(payload, config.jwt.secret_token)
-   
+
 }
 
-function decodeToken (token) {
+function decodeToken(token) {
   const decoded = new Promise((resolve, reject) => {
     try {
       const payload = jwt.decode(token, config.jwt.secret_token)
@@ -26,9 +26,10 @@ function decodeToken (token) {
           status: 401,
           message: 'El token ha expirado'
         })
+
       }
       resolve(payload.sub)
-      
+
     } catch (err) {
       console.log(err)
       reject({
@@ -39,6 +40,7 @@ function decodeToken (token) {
   })
 
   return decoded
+
 }
 
 module.exports = {

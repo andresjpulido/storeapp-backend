@@ -14,7 +14,7 @@ function getInventary(req, res){
         typeName: "Toki",
         size: "Small",
         amount: new Date()
-      });
+      }); 
     
       inv.push({
         sec: 3,
