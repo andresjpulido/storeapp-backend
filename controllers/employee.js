@@ -8,7 +8,7 @@ class Employees {
 
   static create(req, res) {
 
-    const { firstName, lastName, movil, address, typeDocument, document, birthDate } = req.body
+    const { firstName, lastName, movil, address, typeDocument, document, birthDate, ird, email, position, bankName, accountNumber } = req.body
     const { userId } = req.params
 
     return employee
@@ -19,7 +19,12 @@ class Employees {
         address,
         typeDocument,
         document,
-        birthDate
+        birthDate,
+        ird,
+        email,
+        position,        
+        bankName,
+        accountNumber  
       })
       .then(emp => res.status(201).send({
         message: `Employee ${firstName} has been created successfully `,

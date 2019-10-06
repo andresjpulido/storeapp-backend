@@ -17,14 +17,20 @@ api.get('/', utilCtrl.test)
 api.get('/orders', inventaryCtrl.getOrders)
 
 api.get('/employees', auth, EmployeesCtrl.findAll)
-api.post('/employee', auth, EmployeesCtrl.create)
+//api.post('/employee', auth, EmployeesCtrl.create)
+api.post('/employee', EmployeesCtrl.create)
 api.delete('/employees/:idEmp', auth, EmployeesCtrl.remove)
 api.put('/employees/:idEmp', auth, EmployeesCtrl.modify)
 
 api.get('/payslips', PayslipsCtrl.getPayslips)
-api.get('/payslip/:userid', PayslipsCtrl.getPayslipsByUserId)
+api.get('/payslips/:userid', PayslipsCtrl.getPayslipsByUserId)
+api.get('/payslip/:payslipid', PayslipsCtrl.getPayslipsById)
+api.post('/payslip', PayslipsCtrl.create)
+
 api.get('/hours', HoursCtrl.getHours)
-api.get('/hours/:userid', HoursCtrl.getHoursByUserId)
+api.get('/hour/:id', HoursCtrl.getHoursById)
+api.get('/hours/:userid/:isPaid', HoursCtrl.getHoursByUserId)
+api.post('/hour', HoursCtrl.create)
 
 api.post('/user', UserCtrl.create)
 

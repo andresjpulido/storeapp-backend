@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride());
 
-const api = require('./routes')
+const api = require('./routes');
 app.use('/api', api)
  
 console.log("Loading API ...")

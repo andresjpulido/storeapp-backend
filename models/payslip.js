@@ -3,8 +3,8 @@
 export default (sequelize, DataTypes) => {
  
   const Payslip = sequelize.define('payslip', {
-    id: { type: DataTypes.INTEGER, primaryKey: true},
-    id_employee: DataTypes.INTEGER,
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    employeeid: DataTypes.INTEGER,
     description: DataTypes.STRING,
     creation_date: DataTypes.DATE, 
     createdAt: DataTypes.DATE,

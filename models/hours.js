@@ -3,9 +3,10 @@
 export default (sequelize, DataTypes) => {
  
   const Hour = sequelize.define('hour', {
-    id: { type: DataTypes.INTEGER, primaryKey: true},
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     id_emp: DataTypes.INTEGER,
     activity: DataTypes.STRING,
+    isPaid: DataTypes.BOOLEAN,
     start_date: DataTypes.DATE, 
     end_date: DataTypes.DATE, 
     createdAt: DataTypes.DATE,
