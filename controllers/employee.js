@@ -5,29 +5,42 @@ import model from '../models/index'
 const { employee } = model;
 
 class Employees {
+  	
+  getEmployeeFromReq(req) {
+  const employee = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName
+    
+  };
+ 
+  return employee;
+}
 
   static create(req, res) {
 
+    console.log("req.body::" , req.body)
     const { firstName, lastName, movil, address, typeDocument, document, birthDate, ird, email, position, bankName, accountNumber } = req.body
     const { userId } = req.params
 
+    const employeeObj = {
+      firstName: firstName,
+      lastName: lastName,
+      movil: movil, 
+      address:address, 
+      typeDocument:typeDocument, 
+      document:document, 
+      birthDate:birthDate, 
+      ird:ird, 
+      email:email, 
+      position:position, 
+      bankName:bankName, 
+      accountNumber:accountNumber 
+    };
+     
     return employee
-      .create({
-        firstName,
-        lastName,
-        movil,
-        address,
-        typeDocument,
-        document,
-        birthDate,
-        ird,
-        email,
-        position,        
-        bankName,
-        accountNumber  
-      })
+      .create(employeeObj)
       .then(emp => res.status(201).send({
-        message: `Employee ${firstName} has been created successfully `,
+        message: `Employee ${emp.firstName} has been created successfully `,
         emp
       }))
       .catch(function (err) {
@@ -41,7 +54,7 @@ class Employees {
       )
   }
 
-  static findAll(req, res) {
+  static findAll(req, res) { 
     return employee.findAll().then(employees => res.status(200).send(employees));
   }
 

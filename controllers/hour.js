@@ -46,12 +46,14 @@ class Hours{
   }
 
     static getHoursByUserId(req, res){ 
+      console.log(req.params.empId, req.params.isPaid)
+     
         return hour.findAll({
             where: {
-              id_emp: req.params.userid,
+              id_emp: req.params.empId,
               isPaid: req.params.isPaid
             }
-          }).then(hours => res.status(200).send(hours));
+        }).then(hours => res.status(200).send(hours));
     }
 
     

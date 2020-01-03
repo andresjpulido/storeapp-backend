@@ -21,6 +21,8 @@ function decodeToken(token) {
     try {
       const payload = jwt.decode(token, config.jwt.secret_token)
 
+console.log(payload)
+
       if (payload.exp <= moment().unix()) {
         reject({
           status: 401,

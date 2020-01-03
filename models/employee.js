@@ -11,6 +11,7 @@ export default (sequelize, DataTypes) => {
     typeDocument: DataTypes.STRING,
     document: DataTypes.STRING,
     birthDate: DataTypes.DATE,
+    email: DataTypes.STRING,
     ird: DataTypes.STRING,
     position: DataTypes.STRING, 
     bankName: DataTypes.STRING,

@@ -78,22 +78,53 @@ class Users {
   }
 
   static signIn(req, res) {
+
+    console.log("ejecutando el metodo signin >>>>>" + JSON.stringify(req.body))
+    console.log(JSON.stringify(req.body, null, 2))
+
     user.findAll({
       where: {
         username: req.body.username,
-        password: req.body.password
+        //password: req.body.password
       }
-    }).then(user => res.status(200).send({
+    }).then(
+
+
+      function(user) {
+var i = Object.keys(user).length
+console.log(Object.keys(user).length)
+ 
+
+        if (i == 0) {
+          console.log("usuario no encontrado")
+          return res.status(404).send({ message: 'No existe el usuario' })
+        } else {
+          console.log("retornando usser" , user)
+          //return user[0]
+          return res.status(200).send({
+            message: 'Te has logueado correctamente',
+            token: service.createToken(user[0]),
+            username: user[0].username,
+            lastlogin: user[0].lastlogin
+            
+          })
+          
+        }
+      }
+      /*
+      user => res.status(200).send({
       message: 'Te has logueado correctamente',
       token: service.createToken(user[0])
-    }))
+    })*/
+      
+    )
     .catch(function(err) {
       var code = 1;
       if(err.name == "UniqueConstraintError") {
           code = 1;
       }
       console.log(err);
-      console.log(user);
+      console.log("user bd:" + user);
       return res.status(500).send({
           success: 'false',
           code: code,
