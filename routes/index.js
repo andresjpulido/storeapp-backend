@@ -1,14 +1,19 @@
 'use strict'
 
 const express = require('express')
-const inventaryCtrl = require('../controllers/inventary')
+
 //const userCtrl = require('../controllers/product')
 const utilCtrl = require('../controllers/util')
-import EmployeesCtrl from '../controllers/employee'
-import PayslipsCtrl from '../controllers/payslip'
-import PayslipsPDFCtrl from '../controllers/payslipPDF'
-import HoursCtrl from '../controllers/hour'
-import UserCtrl from '../controllers/admin/user'
+import EmployeesCtrl from '../controllers/employeeCtrl'
+import PayslipsCtrl from '../controllers/payslipCtrl'
+import PayslipsPDFCtrl from '../controllers/payslipPDFCtrl'
+import HoursCtrl from '../controllers/hourCtrl'
+import UserCtrl from '../controllers/admin/userCtrl'
+import InventoryCtrl from '../controllers/inventoryCtrl'
+import SizeCtrl from '../controllers/sizeCtrl'
+import ProductTypeCtrl from '../controllers/ProductTypeCtrl'
+import MovementCtrl from '../controllers/movementCtrl'
+import OperationCtrl from '../controllers/operationCtrl'
 import { url } from 'inspector';
 const auth = require('../middlewares/auth')
 const api = express.Router()
@@ -17,7 +22,15 @@ const asyncMiddleware = require('./asyncMiddleware');
 
 api.get('/echo/:echo', utilCtrl.echo)
 api.get('/', utilCtrl.test)
-api.get('/orders', inventaryCtrl.getOrders)
+//api.get('/orders', InventoryCtrl.getOrders)
+api.post('/inventory', InventoryCtrl.createEntry)
+api.get('/inventory', InventoryCtrl.findAll)
+
+api.get('/operation', OperationCtrl.findAll)
+
+api.get('/size', SizeCtrl.findAll)
+api.get('/productType', ProductTypeCtrl.findAll)
+api.get('/movement', MovementCtrl.findAll)
 
 api.get('/employees', auth, EmployeesCtrl.findAll)
 //api.post('/employee', auth, EmployeesCtrl.create)
@@ -33,6 +46,9 @@ api.get('/payslip/:payslipid', PayslipsCtrl.getPayslipsById)
 api.get('/payslippdf/:payslipid', PayslipsPDFCtrl.getPayslipsById)
 api.post('/payslip', PayslipsCtrl.create)
 api.get('/payslips', auth, PayslipsCtrl.getPayslips)
+
+
+
 
 //api.get('/payslip/:payslipid', asyncMiddleware(async (req, res, next) => {
     /* 
