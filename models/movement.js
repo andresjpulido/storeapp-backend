@@ -1,9 +1,5 @@
 'use strict'; 
-/*
-//import Size from './size'
-import model from '../models/index'
-const { Size } = model;
-*/
+
 export default (sequelize, DataTypes) => {
  
   const movementModel = sequelize.define('movementModel', {
@@ -14,7 +10,8 @@ export default (sequelize, DataTypes) => {
     id_productType: DataTypes.INTEGER,
     id_operation: DataTypes.INTEGER,
     createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE    
+    updatedAt: DataTypes.DATE ,
+    username: DataTypes.STRING,
   }, {
     sequelize,
     //modelName: 'Employee'
@@ -30,8 +27,9 @@ export default (sequelize, DataTypes) => {
       foreignKey: 'id_productType' 
     }),  
     movementModel.belongsTo(models.operation,{
-        foreignKey: 'id_operation' 
-      })  
+        foreignKey: 'id_operation'
+    }) 
+
   };
 
   console.log("invocake movementModel model")

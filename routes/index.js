@@ -26,11 +26,12 @@ api.get('/', utilCtrl.test)
 api.post('/inventory', InventoryCtrl.createEntry)
 api.get('/inventory', InventoryCtrl.findAll)
 
-api.get('/operation', OperationCtrl.findAll)
+api.get('/operations', OperationCtrl.findAll)
 
-api.get('/size', SizeCtrl.findAll)
-api.get('/productType', ProductTypeCtrl.findAll)
-api.get('/movement', MovementCtrl.findAll)
+api.get('/sizes', SizeCtrl.findAll)
+api.get('/productTypes', ProductTypeCtrl.findAll)
+api.get('/movements', MovementCtrl.findAll)
+api.post('/movement', MovementCtrl.new)
 
 api.get('/employees', auth, EmployeesCtrl.findAll)
 //api.post('/employee', auth, EmployeesCtrl.create)
@@ -66,7 +67,7 @@ api.get('/payslips', auth, PayslipsCtrl.getPayslips)
 
 api.get('/hours', auth, HoursCtrl.getHours)
 api.get('/hour/:id', auth, HoursCtrl.getHoursById)
-api.get('/hours/:empId/:isPaid', auth, HoursCtrl.getHoursByUserId)
+api.get('/hours/:username/:isPaid', auth, HoursCtrl.getHoursByUserId)
 api.post('/hour', auth, HoursCtrl.create)
 
 api.post('/user', auth, UserCtrl.create)

@@ -1,11 +1,5 @@
 'use strict'; 
 
-/*
-import model from '../models/index'
-const { inventoryModel } = model;
-*/
-//import inventoryModel from './inventory'
-
 export default (sequelize, DataTypes) => {
  
   const Size = sequelize.define('size', {
@@ -27,10 +21,7 @@ export default (sequelize, DataTypes) => {
   };
 
   console.log("invoke Size model")
-
-   
-  
-
+ 
   return Size;
 };
  

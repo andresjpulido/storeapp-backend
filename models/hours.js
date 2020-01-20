@@ -12,7 +12,7 @@ export default (sequelize, DataTypes) => {
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE    
   }, {
-    //sequelize,
+    sequelize,
     //modelName: 'Employee'
     // options
     tableName: 'hour'

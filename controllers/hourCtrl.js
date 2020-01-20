@@ -2,7 +2,7 @@
  
 import model from '../models/index' 
  
-const { hour } = model;
+const { hour, user } = model;
 
 class Hours{
 
@@ -46,14 +46,30 @@ class Hours{
   }
 
     static getHoursByUserId(req, res){ 
-      console.log(req.params.empId, req.params.isPaid)
-     
+      console.log(req.params.username, req.params.isPaid)
+
+       
+      hour.sequelize
+      .query('select * from hour h inner join employee e on h.id_emp = e.id inner join "user" u on e.id = u.id_employee where u.username = ? ',
+          { replacements: [req.params.username], type: hour.sequelize.QueryTypes.SELECT }
+      ).then(hours => res.status(200).send(hours))
+      .catch(function (err) {
+        console.log(" se petaquio esta joda", err)
+        return res.status(500).send({
+          success: 'false',
+          code: "CODE",
+          message: 'Error' + err
+        })
+      })
+       
+
+     /*
         return hour.findAll({
             where: {
               id_emp: req.params.empId,
               isPaid: req.params.isPaid
             }
-        }).then(hours => res.status(200).send(hours));
+        }).then(hours => res.status(200).send(hours));*/
     }
 
     

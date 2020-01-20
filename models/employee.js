@@ -26,7 +26,9 @@ export default (sequelize, DataTypes) => {
   });
 
   Employee.associate = function(models) { 
-    // associations can be defined here
+    Employee.belongsTo(models.user,{
+      foreignKey: 'id' 
+    })
   };  
 
   console.log("invocacion del modelo employee")
