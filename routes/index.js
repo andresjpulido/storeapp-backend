@@ -32,6 +32,7 @@ api.get('/sizes', SizeCtrl.findAll)
 api.get('/productTypes', ProductTypeCtrl.findAll)
 api.get('/movements', MovementCtrl.findAll)
 api.post('/movement', MovementCtrl.new)
+api.get('/movement/report/:date1/:date2', MovementCtrl.report)
 
 api.get('/employees', auth, EmployeesCtrl.findAll)
 //api.post('/employee', auth, EmployeesCtrl.create)
