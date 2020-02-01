@@ -1,27 +1,26 @@
 'use strict'; 
-
+ 
 export default (sequelize, DataTypes) => {
  
-  const Size = sequelize.define('size', {
+  const customer = sequelize.define('customer', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    name: DataTypes.STRING, 
+    firstName: DataTypes.STRING, 
+    lastName: DataTypes.STRING,
     createdAt: 'TIMESTAMP',
     updatedAt: 'TIMESTAMP'    
   }, {
     sequelize,
     //modelName: 'Employee'
     // options
-    tableName: 'size'
+    tableName: 'customer'
   });
 
-  Size.associate = function(models) {
-     Size.hasMany(models.inventoryModel,{
-       foreignKey: 'id'
-     })
+  customer.associate = function(models) {
+    
   };
 
-  console.log("invoke Size model")
+  console.log("invoke operation model")
  
-  return Size;
+  return customer;
 };
  

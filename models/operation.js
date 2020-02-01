@@ -5,8 +5,8 @@ export default (sequelize, DataTypes) => {
   const operation = sequelize.define('operation', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: DataTypes.STRING, 
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE    
+    createdAt: 'TIMESTAMP',
+    updatedAt: 'TIMESTAMP'    
   }, {
     sequelize,
     //modelName: 'Employee'

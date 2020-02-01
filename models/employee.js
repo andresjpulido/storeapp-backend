@@ -16,8 +16,8 @@ export default (sequelize, DataTypes) => {
     position: DataTypes.STRING, 
     bankName: DataTypes.STRING,
     accountNumber: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE     
+    createdAt: 'TIMESTAMP',
+    updatedAt: 'TIMESTAMP'     
   }, {
     sequelize,
     //modelName: 'Employee'

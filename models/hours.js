@@ -9,8 +9,8 @@ export default (sequelize, DataTypes) => {
     isPaid: DataTypes.BOOLEAN,
     start_date: DataTypes.DATE, 
     end_date: DataTypes.DATE, 
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE    
+    createdAt: 'TIMESTAMP',
+    updatedAt: 'TIMESTAMP'    
   }, {
     sequelize,
     //modelName: 'Employee'

@@ -11,7 +11,7 @@ const puppeteer = require('puppeteer');
 const handlebars = require("handlebars");
 
 
-const { payslip } = model;
+const { payslip,employee } = model;
 
  
 function fontPath(file) {
@@ -84,7 +84,12 @@ class Payslips{
 
     static getPayslips(req, res){ 
         console.log("getPayslips")
-        return payslip.findAll().then(payslips => res.status(200).send(payslips));
+        return payslip.findAll({
+          include:[employee]/*,
+          order: [
+            [employee, 'createdAt', 'ASC'] 
+          ]*/
+        },).then(payslips => res.status(200).send(payslips));
     }
 
     static getPayslipsByUserId(req, res){         

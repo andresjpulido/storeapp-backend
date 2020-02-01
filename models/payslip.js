@@ -7,8 +7,8 @@ export default (sequelize, DataTypes) => {
     employeeid: DataTypes.INTEGER,
     description: DataTypes.STRING,
     creation_date: DataTypes.DATE, 
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE    
+    createdAt: 'TIMESTAMP',
+    updatedAt: 'TIMESTAMP'    
   }, {
     //sequelize,
     //modelName: 'Employee'
@@ -17,7 +17,9 @@ export default (sequelize, DataTypes) => {
   });
 
   Payslip.associate = function(models) {
-    // associations can be defined here
+    Payslip.belongsTo(models.employee,{
+      foreignKey: 'employeeid' 
+    })
   };
 
   console.log("invocacion del modelo Payslip")

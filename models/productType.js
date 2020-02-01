@@ -5,8 +5,8 @@ export default (sequelize, DataTypes) => {
   const productType = sequelize.define('productType', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},   
     name: DataTypes.STRING,    
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE     
+    createdAt: 'TIMESTAMP',
+    updatedAt: 'TIMESTAMP'     
   }, {
     sequelize,
     //modelName: 'Employee'

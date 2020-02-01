@@ -1,6 +1,7 @@
 'use strict'
  
 import model from '../models/index'
+var Sequelize = require("sequelize");
 
 const { movementModel, size, productType, operation } = model;
 
@@ -42,7 +43,7 @@ TODO agregar la transaccion para ingresar primero el movimiento y despues hacer 
     date2 = dateStr[0]+"/"+dateStr[1]+"/"+dateStr[2];
 
     movementModel.sequelize
-  .query('select ot.name as product,s.name as "size",  sum(mov.amount) as total from movement mov  inner join "productType" ot on mov."id_productType" = ot."id"  inner join "size" s on mov.id_size = s."id"  where mov."createdAt" between :date1 and :date2  group by ot.name, s.name  order by ot.name,s.name', 
+  .query('select ot.name as namePiece, s.name as "sizepiece",  sum(mov.amount) as totalPieces from movement mov  inner join "productType" ot on mov."id_productType" = ot."id"  inner join "size" s on mov.id_size = s."id"  where mov."createdAt" between :date1 and :date2  group by ot.name, s.name  order by ot.name,s.name', 
           {replacements: { date1: date1, date2: date2}, type:movementModel.sequelize.QueryTypes.SELECT})
   .then(p => res.status(200).send(p))
   .catch(function (err) {
@@ -80,6 +81,44 @@ TODO Agregar metodo para obtener el historial de todos los movimientos generados
       }
       )
   }
+
+
+  static findBetween(req, res){
+    console.log("req.body::" , req.params)
+    let { date1, date2 } = req.params
+    const { userId } = req.params
+ 
+    var dateStr = date1.split("-");
+    date1 = dateStr[0]+"/"+dateStr[1]+"/"+dateStr[2];
+    dateStr = date2.split("-");
+    date2 = dateStr[0]+"/"+dateStr[1]+"/"+dateStr[2];
+
+   
+    return movementModel.findAll(
+      {
+        include:[size, productType, operation],
+        order: [
+          [productType, 'name', 'ASC'],
+          [size, 'name', 'ASC']
+        ],
+        where: {
+          "createdAt": {
+            [Sequelize.Op.between]: [date1, date2]
+          }
+        }
+      },
+      ).then(movement => res.status(200).send(movement))
+      .catch(function (err) {
+        console.log(" se petaquio esta joda", err)
+        return res.status(500).send({
+          success: 'false',
+          code: "CODE",
+          message: 'Error' + err
+        })
+      }
+      )
+  }
+
 
 }
 

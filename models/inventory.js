@@ -12,8 +12,8 @@ export default (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     id_size: DataTypes.INTEGER, 
     id_productType: DataTypes.INTEGER,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE    
+    createdAt: 'TIMESTAMP',
+    updatedAt: 'TIMESTAMP'    
   }, {
     sequelize,
     //modelName: 'Employee'

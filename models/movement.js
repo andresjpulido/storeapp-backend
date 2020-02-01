@@ -9,8 +9,8 @@ export default (sequelize, DataTypes) => {
     id_size: DataTypes.INTEGER, 
     id_productType: DataTypes.INTEGER,
     id_operation: DataTypes.INTEGER,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE ,
+    createdAt: 'TIMESTAMP',
+    updatedAt: 'TIMESTAMP',
     username: DataTypes.STRING,
   }, {
     sequelize,

@@ -10,9 +10,9 @@ export default (sequelize, DataTypes) => {
       },     
       username: DataTypes.STRING,
       password: DataTypes.STRING,
-      lastlogin: DataTypes.DATE, 
-      createdAt: DataTypes.DATE,
-      updatedAt: DataTypes.DATE    
+      lastlogin: 'TIMESTAMP', 
+      createdAt: 'TIMESTAMP',
+      updatedAt: 'TIMESTAMP'    
   }, {
     sequelize,    
     tableName: 'user'
