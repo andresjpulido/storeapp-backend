@@ -60,14 +60,9 @@ console.log("ingressando al metdo signin")
 
 } 
 
-function version (req, res) {
- 
-    return res.status(200).send({ version: "0.1" })
-  
-} 
+
 
 module.exports = {
   signUp,
-  signIn,
-  version
+  signIn
 }

@@ -139,6 +139,10 @@ console.log(Object.keys(user).length)
     return res.status(200).send({"usuario":req.user})
   }
 
+  static version (req, res) { 
+    return res.status(200).send({ version: "0.1" })  
+  } 
+
 }
 
 export default Users;
