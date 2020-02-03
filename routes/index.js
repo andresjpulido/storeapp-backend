@@ -30,7 +30,7 @@ api.get('/', utilCtrl.test)
 api.get('/hours', auth, HoursCtrl.getHours)
 api.get('/hour/:id', auth, HoursCtrl.getHoursById)
 api.get('/hours/:username/:isPaid', auth, HoursCtrl.getHoursByUserId)
-api.post('/hour', auth, HoursCtrl.create)
+api.post('/hour',  HoursCtrl.create)
 
 api.post('/inventory', InventoryCtrl.createEntry)
 api.get('/inventory', InventoryCtrl.findAll)
@@ -69,6 +69,7 @@ api.post('/signup', UserCtrl.signUp)
 api.post('/signin', UserCtrl.signIn)
 
 api.post('/user', auth, UserCtrl.create)
+api.get('/version', )
 
 //api.get('/payslip/:payslipid', asyncMiddleware(async (req, res, next) => {
     /* 

@@ -9,6 +9,7 @@ export default (sequelize, DataTypes) => {
     isPaid: DataTypes.BOOLEAN,
     start_date: DataTypes.DATE, 
     end_date: DataTypes.DATE, 
+    amount: DataTypes.INTEGER,
     createdAt: 'TIMESTAMP',
     updatedAt: 'TIMESTAMP'    
   }, {

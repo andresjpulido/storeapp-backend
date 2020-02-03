@@ -8,14 +8,14 @@ class Hours{
 
   static create(req, res) {
 
-    const { activity, start_date, stop_date, id_emp} = req.body
+    const { activity, start_date, stop_date, id_emp, amount} = req.body
     const { userId } = req.params
 
-    console.log(activity, start_date, stop_date, id_emp)
+    console.log(activity, start_date, stop_date, id_emp, amount)
 
     return hour
       .create({
-        activity, start_date, stop_date, id_emp
+        activity, start_date, stop_date, id_emp, amount
       })
       .then(emp => res.status(201).send({
         message: `Hour ${activity} has been created successfully `,
@@ -50,7 +50,7 @@ class Hours{
 
        
       hour.sequelize
-      .query('select * from hour h inner join employee e on h.id_emp = e.id inner join "user" u on e.id = u.id_employee where u.username = ? ',
+      .query('select h.* from hour h inner join employee e on h.id_emp = e.id inner join "user" u on e.id = u.id_employee where u.username = ? ',
           { replacements: [req.params.username], type: hour.sequelize.QueryTypes.SELECT }
       ).then(hours => res.status(200).send(hours))
       .catch(function (err) {

@@ -83,6 +83,7 @@ class Users {
     console.log(JSON.stringify(req.body, null, 2))
 
     user.findAll({
+      include:[ model.employee ],
       where: {
         username: req.body.username,
         //password: req.body.password
@@ -99,14 +100,13 @@ console.log(Object.keys(user).length)
           console.log("usuario no encontrado")
           return res.status(404).send({ message: 'No existe el usuario' })
         } else {
-          console.log("retornando usser" , user)
-          //return user[0]
+           
           return res.status(200).send({
             message: 'Te has logueado correctamente',
             token: service.createToken(user[0]),
             username: user[0].username,
-            lastlogin: user[0].lastlogin
-            
+            lastlogin: user[0].lastlogin,
+            employee: user[0].employee
           })
           
         }
