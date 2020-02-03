@@ -140,6 +140,7 @@ console.log(Object.keys(user).length)
   }
 
   static version (req, res) { 
+    console.log("showing version ... OK")
     return res.status(200).send({ version: "0.1" })  
   } 
 
