@@ -69,7 +69,7 @@ api.post('/signup', UserCtrl.signUp)
 api.post('/signin', UserCtrl.signIn)
 
 api.post('/user', auth, UserCtrl.create)
-api.get('/version', )
+api.get('/version',UserCtrl.version )
 
 //api.get('/payslip/:payslipid', asyncMiddleware(async (req, res, next) => {
     /* 
