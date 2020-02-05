@@ -1,6 +1,7 @@
 {
     "name": "store-api",
     "version": "2.0.0",
+    "main": "app.js",
     "scripts": {
         "dev": "nodemon --exec babel-node app.js",
         "clean": "rm -rf build && mkdir build",
@@ -8,7 +9,7 @@
         "build2": "babel . -d dist",
         "start2": "node ./dist/app.js",
         "start3": "babel-node app.js",
-        "start": "nodemon --exec babel-node app.js",
+        "start": "node app.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {

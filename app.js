@@ -14,6 +14,9 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 
 const api = require('./routes');
+
+app.set('port' , process.env.PORT || PORT)
+
 app.use('/api', api)
  
 console.log("Loading API ...")
@@ -22,5 +25,5 @@ for(var i =0; i < api.stack.length; i ++){
 }
 
 app.listen(PORT, function() {
-  console.log("Node server running on http://localhost:"+PORT);
+  console.log("Node server running on http://localhost:"+app.get('port'));
 });
