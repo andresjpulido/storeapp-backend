@@ -5,9 +5,9 @@
         "dev": "nodemon --exec babel-node app.js",
         "clean": "rm -rf build && mkdir build",
         "build-babel": "babel -d ./build ./src -s",
-        "build": "babel . -d dist",
+        "build2": "babel . -d dist",
         "start2": "node ./dist/app.js",
-        "start": "node app.js"
+        "start": "babel-node app.js"
     },
     "dependencies": {
         "babel-cli": "^6.26.0",
@@ -29,6 +29,6 @@
         "babel-preset-env": "^1.7.0"
     },
     "engines": {
-        "node": "12.13.x"
+        "node": "10.15.x"
     }
 }
