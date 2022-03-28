@@ -25,7 +25,7 @@ export default (app) => {
 		const parameterInstance = Container.get(parameterService);
 		const hourInstance = Container.get(hourService);
 		const payslip = await serviceInstance.getOne(payslipid);
-		const params = await parameterInstance.getAll();
+		const params = await parameterInstance.getAll({});
 		const hours = await hourInstance.getAllbyPayslipId(payslipid);
 		let dataObj = { params: params, hours: hours, payslip: payslip };
 		//TODO get hour by payslip

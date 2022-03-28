@@ -6,7 +6,7 @@ var path = require('path');
 var Sequelize = require('sequelize');
 var basename = path.basename(__filename);
 var db = {};
-
+ 
 var sequelize = new Sequelize(
   process.env.DB_DATABASE,
   process.env.DB_USERNAME,
@@ -19,10 +19,7 @@ var sequelize = new Sequelize(
     port: process.env.DB_PORT
   }
 );
- 
-
-
- 
+  
 
 console.log("antes de la autenticacion")
 

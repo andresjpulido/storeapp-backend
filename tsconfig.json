@@ -27,6 +27,6 @@
 , "src/models/image/.js"    ],
   "exclude": [
     "node_modules",
-    "tests"
+    "test"
   ]
 }
